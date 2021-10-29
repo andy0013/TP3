@@ -8,26 +8,29 @@
 #include "Protocolo.h"
 
 Protocolo::Protocolo() {
-	this->clienteServidor.insert(std::pair<std::string,std::string>("define","d"));
-	this->clienteServidor.insert(std::pair<std::string,std::string>("push","u"));
-	this->clienteServidor.insert(std::pair<std::string,std::string>("pop","o"));
+	this->clienteServidor.insert({'d',"define"});
+	this->clienteServidor.insert({'u',"push"});
+	this->clienteServidor.insert({'o',"pop"});
 }
 
-void Protocolo::preparar_servidor(const char* port){
-	this->servidor.bind_and_listen(NULL, port);
+
+std::string Protocolo::recibir_solicitud_cliente(Socket& socketReceptor){
+	char operacionSolicitadaPorUsuario;
+	size_t result = socketReceptor.receive(&operacionSolicitadaPorUsuario, 1);
+	if(result == 0 || result == -1)
+		throw std::invalid_argument("conexion cerrada");
+	std::string operacion = this->clienteServidor.find(operacionSolicitadaPorUsuario)->second;
+	return operacion;
 }
 
-void Protocolo::aceptar_cliente(){
-	Socket s = this->servidor.accept();
-	char buffer[1];
-	s.receive(buffer, 1);
-//	this->servidor.receive(buffer, 1);
-	std::cout << buffer << std::endl;
+std::string Protocolo::recibir_mensaje_cliente(Socket& socketReceptor){
+	uint16_t cantidadMensaje;
+	size_t result = socketReceptor.receive((char*)&cantidadMensaje,sizeof(uint16_t));
+	int cantidadCaracteres = ntohs(cantidadMensaje);
+	char* mensajeRecibido = (char*)malloc(cantidadCaracteres);
+	result = socketReceptor.receive(mensajeRecibido,cantidadCaracteres);
+	return mensajeRecibido;
 }
-
-void Protocolo::recibir_mensaje_cliente(){
-}
-
 
 Protocolo::~Protocolo() {
 

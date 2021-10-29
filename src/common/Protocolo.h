@@ -13,17 +13,13 @@
 
 
 class Protocolo {
-	std::map<std::string,std::string> clienteServidor;
-	Socket cliente;
-	Socket servidor;
+	std::map<char,std::string> clienteServidor;
 public:
 	Protocolo();
 
-	void preparar_servidor(const char *port);
+	std::string recibir_solicitud_cliente(Socket& socketReceptor);
 
-	void aceptar_cliente();
-
-	void recibir_mensaje_cliente();
+	std::string recibir_mensaje_cliente(Socket& socketReceptor);
 
 	virtual ~Protocolo();
 };

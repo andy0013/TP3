@@ -7,10 +7,6 @@
 
 #include "Socket.h"
 
-Socket::Socket() {
-	this->fd = -2;
-}
-
 Socket::Socket(int fd) {
 	this->fd = fd;
 }
@@ -108,18 +104,34 @@ size_t Socket::receive(char *buffer, size_t length) {
 		ssize_t bytes = 0;
 		bytes = ::recv(this->fd, &buffer[bytes_recibidos],
 				length - bytes_recibidos, 0);
-		if ((bytes == -1) || (bytes == 0)) {
+		if ((bytes == -1)){
+			socket_conectado = -1;
+			return socket_conectado;
+		}
+		if((bytes == 0)){
 			socket_conectado = 0;
-			break;
+			return socket_conectado;
 		}
 		bytes_recibidos += bytes;
 	}
 	return bytes_recibidos;
 }
 
+void Socket::close() {
+    if(this->fd)
+		::shutdown(this->fd, SHUT_RDWR);
+		::close(this->fd);
+}
+
+Socket &Socket::operator=(Socket &&other) {
+    this->fd = other.fd;
+    other.fd = -2;
+    return *this;
+}
+
 Socket::~Socket() {
 	if (this->fd)
 		shutdown(this->fd, SHUT_RDWR);
-		close(this->fd);
+		::close(this->fd);
 }
 

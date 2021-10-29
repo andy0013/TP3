@@ -8,9 +8,13 @@
 #ifndef SERVER_SERVIDOR_H_
 #define SERVER_SERVIDOR_H_
 #include "../common/Protocolo.h"
+#include "EscucharClientes.h"
+#include "../common/ProtecetedQueue.h"
 
 class Servidor {
-	Protocolo protocolo;
+
+	EscucharClientes escuchar;
+
 public:
 	Servidor(char *port);
 

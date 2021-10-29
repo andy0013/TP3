@@ -5,15 +5,12 @@
  *      Author: andres
  */
 #include <iostream>
-#include <stddef.h>
-#include <stdint.h>
+#include <cstring>
 #include <unistd.h>
-#include <string.h>
+#include <stdexcept>
 #include <sys/types.h>
-#include <sys/socket.h>
 #include <netdb.h>
-#include <unistd.h>
-
+#include <sys/socket.h>
 
 #define FLAG_CLIENTE 0
 #define FLAG_SERVIDOR AI_PASSIVE
@@ -22,11 +19,15 @@
 #define SOCKET_H_
 
 class Socket {
-	int fd;
+
 public:
-	Socket();
+	Socket() = default;
+
+	explicit Socket(int fd);
 
 	Socket(Socket&& other);
+
+	Socket &operator=(Socket &&other);
 
 	int bind_and_listen( const char *host, const char *service);
 
@@ -38,9 +39,14 @@ public:
 
 	size_t receive(char *buffer, size_t length);
 
+	void close();
+
 	virtual ~Socket();
 private:
-	Socket(int fd);
+	int fd;
+
+
+
 
 };
 
