@@ -12,6 +12,10 @@ Protocolo::Protocolo() {
 	this->clienteServidor.insert({'u',"push"});
 	this->clienteServidor.insert({'o',"pop"});
 }
+void Protocolo::enviarSolicitudClienteAlServidor(std::string operacion,std::string& cola,std::string& mensaje,int ocurrenciasBlancos){
+//	this->clienteServidor.find(operacion)->first;
+}
+
 
 
 std::string Protocolo::recibir_solicitud_cliente(Socket& socketReceptor){
@@ -24,10 +28,11 @@ std::string Protocolo::recibir_solicitud_cliente(Socket& socketReceptor){
 }
 
 std::string Protocolo::recibir_mensaje_cliente(Socket& socketReceptor){
-	uint16_t cantidadMensaje;
-	size_t result = socketReceptor.receive((char*)&cantidadMensaje,sizeof(uint16_t));
-	int cantidadCaracteres = ntohs(cantidadMensaje);
+	char cantidadMensaje[2];
+	size_t result = socketReceptor.receive(cantidadMensaje,sizeof(uint16_t));
+	int cantidadCaracteres = atoi(cantidadMensaje);
 	char* mensajeRecibido = (char*)malloc(cantidadCaracteres);
+//	char* mensajeRecibido = (char*)malloc(cantidadMensaje);
 	result = socketReceptor.receive(mensajeRecibido,cantidadCaracteres);
 	return mensajeRecibido;
 }

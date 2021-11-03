@@ -8,14 +8,12 @@
 #include "SolicitudDefine.h"
 
 SolicitudDefine::SolicitudDefine() {
-	// TODO Auto-generated constructor stub
-
 }
 
-std::string SolicitudDefine::resolverSolicitud(ProtecetedQueue& queue, Socket& socketCliente){
+std::string SolicitudDefine::resolverSolicitud(MonitorColas& queue, Socket& socketCliente){
 	Protocolo comunicacion;
-	std::string mensaje = comunicacion.recibir_mensaje_cliente(socketCliente);
-//  pensar mas adelante, necesito una lisa de pilas, no es una sola PILA IMPORTANTE;
+	std::string nombreCola = comunicacion.recibir_mensaje_cliente(socketCliente);
+	queue.defineNuevaCola(nombreCola);
 	return VACIO;
 }
 

@@ -8,11 +8,13 @@
 #ifndef SERVER_SOLICITUDPOP_H_
 #define SERVER_SOLICITUDPOP_H_
 #include "Solicitud.h"
+#include "ColasProtegidas.h"
+#include "../common/Socket.h"
 class SolicitudPop :public Solicitud{
 public:
 	SolicitudPop();
 
-	std::string resolverSolicitud(ProtecetedQueue& queue, Socket& socketCliente)override;
+	std::string resolverSolicitud(MonitorColas& queue, Socket& socketCliente)override;
 
 	void enviarInformacion(std::string response, Socket& socketCliente)override;
 

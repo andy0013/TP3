@@ -9,7 +9,7 @@
 #define SERVER_SERVIDOR_H_
 #include "../common/Protocolo.h"
 #include "EscucharClientes.h"
-#include "../common/ProtecetedQueue.h"
+#include "ColasProtegidas.h"
 
 class Servidor {
 

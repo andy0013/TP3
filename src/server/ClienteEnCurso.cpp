@@ -7,7 +7,7 @@
 
 #include "ClienteEnCurso.h"
 
-ClienteEnCurso::ClienteEnCurso(Socket cliente,ProtecetedQueue& monitor):
+ClienteEnCurso::ClienteEnCurso(Socket cliente,MonitorColas& monitor):
 	monitor(monitor){
 	this->clienteSocket = std::move(cliente);
 	this->clienteIntercambiaDatos = true;

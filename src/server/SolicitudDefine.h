@@ -9,10 +9,12 @@
 #define SERVER_SOLICITUDDEFINE_H_
 #define VACIO ""
 #include "Solicitud.h"
+#include "ColasProtegidas.h"
+#include "../common/Socket.h"
 class SolicitudDefine :public Solicitud {
 public:
 	SolicitudDefine();
-	std::string resolverSolicitud(ProtecetedQueue& queue, Socket& socketCliente)override;
+	std::string resolverSolicitud(MonitorColas& queue, Socket& socketCliente)override;
 	void enviarInformacion(std::string response, Socket& socketCliente)override;
 	virtual ~SolicitudDefine();
 };

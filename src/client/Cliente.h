@@ -7,10 +7,13 @@
 
 #ifndef CLIENT_CLIENTE_H_
 #define CLIENT_CLIENTE_H_
-
+#include "../common/Socket.h"
+#include "../common/Protocolo.h"
 class Cliente {
+	Socket sktCliente;
 public:
-	Cliente();
+	Cliente(char *argv[]);
+	void comunicacion();
 	virtual ~Cliente();
 };
 

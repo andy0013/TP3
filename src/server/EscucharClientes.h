@@ -8,10 +8,11 @@
 #ifndef SRC_SERVER_ESCUCHARCLIENTES_H_
 #define SRC_SERVER_ESCUCHARCLIENTES_H_
 #include "../common/Socket.h"
-#include "../common/ProtecetedQueue.h"
 #include "ClienteEnCurso.h"
 #include <list>
 #include <thread>
+#include "ColasProtegidas.h"
+#include "MonitorColas.h"
 
 class EscucharClientes {
 	Socket servidor;

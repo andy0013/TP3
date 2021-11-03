@@ -8,16 +8,17 @@
 #ifndef SRC_SERVER_CLIENTEENCURSO_H_
 #define SRC_SERVER_CLIENTEENCURSO_H_
 #include "../common/Socket.h"
-#include "../common/ProtecetedQueue.h"
 #include "StrategySolicitud.h"
 #include "../common/Protocolo.h"
+#include "MonitorColas.h"
+#include "ColasProtegidas.h"
 class ClienteEnCurso {
 private:
 	Socket clienteSocket;
 	bool clienteIntercambiaDatos;
-	ProtecetedQueue& monitor;
+	MonitorColas& monitor;
 public:
-	ClienteEnCurso(Socket cliente,ProtecetedQueue& monitor);
+	ClienteEnCurso(Socket cliente,MonitorColas& monitor);
 
 	void operator()();
 

@@ -12,9 +12,10 @@ SolicitudPop::SolicitudPop() {
 
 }
 
-std::string SolicitudPop::resolverSolicitud(ProtecetedQueue& queue, Socket& socketCliente){
-	//FALTA LOGICA DE VARIAS QUEUE
-	return queue.obtenerParticionSiEsPosible();
+std::string SolicitudPop::resolverSolicitud(MonitorColas& queue, Socket& socketCliente){
+	Protocolo comunicacion;
+	std::string nombreCola = comunicacion.recibir_mensaje_cliente(socketCliente);
+	return queue.popColaSiExiste(nombreCola);
 }
 
 void SolicitudPop::enviarInformacion(std::string response, Socket& socketCliente){

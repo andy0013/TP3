@@ -19,7 +19,7 @@ class ColasProtegidas {
 private:
 	std::queue<std::string> informacionCola;
     std::mutex m;
-    bool terminamos;
+    std::condition_variable colaVacia;
 
     ColasProtegidas(const ColasProtegidas &other) = delete;
 

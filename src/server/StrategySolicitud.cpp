@@ -23,7 +23,7 @@ void StrategySolicitud::StrategyCrearSolicitud(std::string operacion){
 	}
 }
 
-std::string StrategySolicitud::StrategyRealizarSolicitud(ProtecetedQueue& queue, Socket& socketCliente){
+std::string StrategySolicitud::StrategyRealizarSolicitud(MonitorColas& queue, Socket& socketCliente){
 	return this->solicitud->resolverSolicitud(queue, socketCliente);
 }
 

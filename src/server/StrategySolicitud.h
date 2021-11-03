@@ -11,7 +11,8 @@
 #include "SolicitudDefine.h"
 #include "SolicitudPush.h"
 #include "SolicitudPop.h"
-#include "../common/ProtecetedQueue.h"
+#include "ColasProtegidas.h"
+#include "MonitorColas.h"
 #include "../common/Protocolo.h"
 #include "../common/Socket.h"
 #include <string>
@@ -25,7 +26,7 @@ public:
 
 	void StrategyCrearSolicitud(std::string operacion);
 
-	std::string StrategyRealizarSolicitud(ProtecetedQueue& queue, Socket& socketCliente);
+	std::string StrategyRealizarSolicitud(MonitorColas& queue, Socket& socketCliente);
 
 	void StrategyEnviarInformacionSolicitada(Socket& socketCliente,std::string response);
 

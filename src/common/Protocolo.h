@@ -17,6 +17,8 @@ class Protocolo {
 public:
 	Protocolo();
 
+	void enviarSolicitudClienteAlServidor(std::string operacion,std::string& cola,std::string& mensaje,int ocurrenciasBlancos);
+
 	std::string recibir_solicitud_cliente(Socket& socketReceptor);
 
 	std::string recibir_mensaje_cliente(Socket& socketReceptor);

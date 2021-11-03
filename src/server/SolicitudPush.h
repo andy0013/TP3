@@ -8,12 +8,14 @@
 #ifndef SERVER_SOLICITUDPUSH_H_
 #define SERVER_SOLICITUDPUSH_H_
 #define VACIO ""
+#include "ColasProtegidas.h"
+#include "../common/Socket.h"
 #include "Solicitud.h"
 class SolicitudPush :public Solicitud {
 public:
 	SolicitudPush();
 
-	std::string resolverSolicitud(ProtecetedQueue& queue, Socket& socketCliente)override;
+	std::string resolverSolicitud(MonitorColas& queue, Socket& socketCliente)override;
 
 	void enviarInformacion(std::string response, Socket& socketCliente)override;
 

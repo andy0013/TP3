@@ -25,20 +25,19 @@ EscucharClientes &EscucharClientes::operator=(EscucharClientes &&other){
 
 void EscucharClientes::operator()(){
 	bool enCurso = true;
-	ProtecetedQueue queueDeDatos;
+	MonitorColas monitorColas;
 	while (enCurso) {
 		Socket cliente;
-//		try {
+		try {
 		cliente = this->servidor.accept();
-//		}
-//		catch (std::invalid_argument) {
-//			break;
-//		}
-		ClienteEnCurso clienteConectado(std::move(cliente),queueDeDatos);
+		}
+		catch (std::invalid_argument) {
+			break;
+		}
+		ClienteEnCurso clienteConectado(std::move(cliente),monitorColas);
 		this->clientesEnCurso.push_back(new std::thread(std::move(clienteConectado)));
-		queueDeDatos.terminarQueue();
-	}
 
+	}
 }
 
 EscucharClientes::~EscucharClientes() {
