@@ -9,7 +9,8 @@
 #define SERVER_SERVER_SOLICITUDPUSH_H_
 
 #define VACIO ""
-#include "server_ColasProtegidas.h"
+#include "common_ColasProtegidas.h"
+#include "common_MonitorColas.h"
 #include "common_Socket.h"
 #include "common_Solicitud.h"
 class SolicitudPush :public Solicitud {

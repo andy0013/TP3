@@ -20,7 +20,7 @@ std::string SolicitudPop::resolverSolicitud(MonitorColas& queue, Socket& socketC
 
 void SolicitudPop::enviarInformacion(std::string response, Socket& socketCliente){
 	Protocolo comunicacion;
-	comunicacion.enviarResponseACliente(socketCliente, response);
+	comunicacion.enviarMensaje(socketCliente, response);
 }
 
 void SolicitudPop::enviarInfomacionCliente(Socket& socketServer,std::string lineaInputCliente){
@@ -32,7 +32,6 @@ void SolicitudPop::enviarInfomacionCliente(Socket& socketServer,std::string line
 	std::string mensajePorPushear = lineaInputCliente.substr(0, lineaInputCliente.find("\n"));
 	comunicacion.enviarSolicitudClienteAlServidor(socketServer, operacion);
 	comunicacion.enviarMensaje(socketServer, nombreCola);
-	comunicacion.enviarMensaje(socketServer, mensajePorPushear);
 }
 
 void SolicitudPop::recibirInfomacionServidor(Socket& socketServer){

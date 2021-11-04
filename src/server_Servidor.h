@@ -7,8 +7,8 @@
 
 #ifndef SERVER_SERVER_SERVIDOR_H_
 #define SERVER_SERVER_SERVIDOR_H_
+#include "common_ColasProtegidas.h"
 #include "common_Protocolo.h"
-#include "server_ColasProtegidas.h"
 #include "server_EscucharClientes.h"
 
 class Servidor {

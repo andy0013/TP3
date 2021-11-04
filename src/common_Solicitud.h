@@ -9,10 +9,10 @@
 #define SERVER_SERVER_SOLICITUD_H_
 #include <string>
 
+#include "common_ColasProtegidas.h"
+#include "common_MonitorColas.h"
 #include "common_Protocolo.h"
 #include "common_Socket.h"
-#include "server_ColasProtegidas.h"
-#include "server_MonitorColas.h"
 class Solicitud {
 public:
 	virtual std::string resolverSolicitud(MonitorColas& queue, Socket& socketCliente) = 0;

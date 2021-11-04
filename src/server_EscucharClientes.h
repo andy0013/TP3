@@ -10,10 +10,10 @@
 #include <list>
 #include <thread>
 
+#include "common_ColasProtegidas.h"
+#include "common_MonitorColas.h"
 #include "common_Socket.h"
 #include "server_ClienteEnCurso.h"
-#include "server_ColasProtegidas.h"
-#include "server_MonitorColas.h"
 
 class EscucharClientes {
 	Socket servidor;

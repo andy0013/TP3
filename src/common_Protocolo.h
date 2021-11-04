@@ -30,8 +30,6 @@ public:
 
 	std::string recibirMensaje(Socket& socketReceptor);
 
-	void enviarResponseACliente(Socket& socketReceptor,std::string mensaje);
-
 	virtual ~Protocolo();
 };
 

@@ -7,9 +7,10 @@
 
 #ifndef SERVER_SERVER_SOLICITUDPOP_H_
 #define SERVER_SERVER_SOLICITUDPOP_H_
+#include "common_ColasProtegidas.h"
+#include "common_MonitorColas.h"
 #include "common_Socket.h"
 #include "common_Solicitud.h"
-#include "server_ColasProtegidas.h"
 class SolicitudPop :public Solicitud{
 public:
 	SolicitudPop();

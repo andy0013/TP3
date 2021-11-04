@@ -7,11 +7,11 @@
 
 #ifndef SRC_SERVER_CLIENTEENCURSO_H_
 #define SRC_SERVER_CLIENTEENCURSO_H_
+#include "common_ColasProtegidas.h"
+#include "common_MonitorColas.h"
 #include "common_Socket.h"
 #include "common_Protocolo.h"
 #include "common_StrategySolicitud.h"
-#include "server_ColasProtegidas.h"
-#include "server_MonitorColas.h"
 class ClienteEnCurso {
 private:
 	Socket clienteSocket;

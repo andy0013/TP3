@@ -11,13 +11,13 @@
 #include <string>
 #include <cstring>
 
+#include "common_ColasProtegidas.h"
+#include "common_MonitorColas.h"
 #include "common_Socket.h"
 #include "common_Solicitud.h"
 #include "common_SolicitudDefine.h"
 #include "common_SolicitudPop.h"
 #include "common_SolicitudPush.h"
-#include "server_ColasProtegidas.h"
-#include "server_MonitorColas.h"
 class StrategySolicitud {
 private:
 	Solicitud *solicitud;

@@ -10,7 +10,8 @@
 
 #define VACIO ""
 #include "common_Solicitud.h"
-#include "server_ColasProtegidas.h"
+#include "common_MonitorColas.h"
+#include "common_ColasProtegidas.h"
 #include "common_Socket.h"
 class SolicitudDefine :public Solicitud {
 public:

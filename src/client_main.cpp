@@ -11,11 +11,11 @@
 #include "client_Cliente.h"
 
 
-//int main(int argc, char *argv[]) {
-//	Cliente cliente(argv);
-//	cliente.comunicacion();
-//	return 0;
-//}
+int main(int argc, char *argv[]) {
+	Cliente cliente(argv);
+	cliente.comunicacion();
+	return 0;
+}
 
 
 
