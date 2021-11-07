@@ -30,6 +30,7 @@ void EscucharClientes::run(){
 			eliminarThreadQueFinalizoComunicacion();
 		}
 		catch (std::invalid_argument &e) {
+			enCurso = false;
 			break;
 		}
 	}
@@ -43,7 +44,7 @@ void EscucharClientes::eliminarThreadQueFinalizoComunicacion() {
             delete *it;
             it = this->clientesEnCurso.erase(it);
         } else {
-            it++;
+            it.operator ++();
         }
     }
 }

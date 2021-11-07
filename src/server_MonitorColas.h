@@ -23,7 +23,7 @@ private:
     MonitorColas& operator=(const MonitorColas &other) = delete;
 
 public:
-	explicit MonitorColas();
+	MonitorColas();
 
 	void defineNuevaCola(std::string nombreCola);
 

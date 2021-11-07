@@ -9,7 +9,6 @@
 
 MonitorColas::MonitorColas() {
 	// TODO Auto-generated constructor stub
-
 }
 
 void MonitorColas::defineNuevaCola(std::string nombreCola){

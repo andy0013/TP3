@@ -19,7 +19,6 @@
 #define SOCKET_H_
 
 class Socket {
-
 private:
 	int fd;
 

@@ -2,7 +2,7 @@
 #define THREAD_H
 
 #include <thread>
-
+#include <utility>
 class Thread {
 public:
     Thread();

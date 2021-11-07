@@ -87,7 +87,7 @@ bool Socket::send(const char *buffer, size_t bytes_a_enviar) {
 	size_t bytes_enviados = 0;
 	bool envioCorrecto = true;
 	int socket_conectado = 1;
-	while ((bytes_enviados < bytes_a_enviar) && (socket_conectado) ) {
+	while ((bytes_enviados < bytes_a_enviar) && (socket_conectado)) {
 		ssize_t bytes = 0;
 		bytes = ::send(this->fd, &buffer[bytes_enviados],
 				bytes_a_enviar - bytes_enviados,MSG_NOSIGNAL);
@@ -102,19 +102,16 @@ bool Socket::send(const char *buffer, size_t bytes_a_enviar) {
 
 bool Socket::receive(char *buffer, size_t length) {
 	size_t bytes_recibidos = 0;
-	int socket_conectado = 1;
 	bool recvCorrecto = true;
-	while ((bytes_recibidos < length) && (socket_conectado)) {
+	while ((bytes_recibidos < length)) {
 		ssize_t bytes = 0;
 		bytes = ::recv(this->fd, &buffer[bytes_recibidos],
 				length - bytes_recibidos, 0);
 		if ((bytes == -1)){
-			socket_conectado = -1;
 			recvCorrecto = false;
 			return recvCorrecto;
 		}
 		if((bytes == 0)){
-			socket_conectado = 0;
 			recvCorrecto = false;
 			return recvCorrecto;
 		}

@@ -14,11 +14,10 @@
 #include <utility>
 
 class Servidor {
-
 	Socket servidor;
 
 public:
-	Servidor(char *port);
+	explicit Servidor(char *port);
 
 	void comunicacion();
 

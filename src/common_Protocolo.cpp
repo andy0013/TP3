@@ -55,7 +55,5 @@ std::string Protocolo::recibirMensaje(Socket& socketReceptor){
 }
 
 
-Protocolo::~Protocolo() {
-
-}
+Protocolo::~Protocolo() {}
 
