@@ -22,7 +22,7 @@ class Protocolo {
 public:
 	Protocolo();
 
-	void enviarSolicitudClienteAlServidor(Socket& socketServer,std::string& operacion);
+	void enviarSolicitudClienteAlServidor(Socket& socketServer,const std::string& operacion);
 
 	void enviarMensaje(Socket& socketServer,std::string& mensaje);
 

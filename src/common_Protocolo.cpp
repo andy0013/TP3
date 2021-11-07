@@ -23,7 +23,7 @@ void Protocolo::obtenerCharParServidor(const std::string &operacion,
 	}
 }
 
-void Protocolo::enviarSolicitudClienteAlServidor(Socket& socketServer,std::string& operacion){
+void Protocolo::enviarSolicitudClienteAlServidor(Socket& socketServer,const std::string& operacion){
 	char claveParaServidor;
 	obtenerCharParServidor(operacion, claveParaServidor);
 	socketServer.send(&claveParaServidor, sizeof(char));
