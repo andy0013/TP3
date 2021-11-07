@@ -27,7 +27,7 @@ private:
     ColasProtegidas& operator=(const ColasProtegidas &other) = delete;
 
 public:
-	explicit ColasProtegidas();
+	ColasProtegidas();
 
 	void agregarInformacionSiEsPosible(std::string mensajeCliente);
 

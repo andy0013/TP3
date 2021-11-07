@@ -20,9 +20,9 @@ class Protocolo {
 			char& claveParaServidor);
 
 public:
-	explicit Protocolo();
+	Protocolo();
 
-	void enviarSolicitudClienteAlServidor(Socket& socketServer,std::string operacion);
+	void enviarSolicitudClienteAlServidor(Socket& socketServer,std::string& operacion);
 
 	void enviarMensaje(Socket& socketServer,std::string& mensaje);
 

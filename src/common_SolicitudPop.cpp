@@ -27,7 +27,6 @@ void SolicitudPop::enviarInfomacionCliente(Socket& socketServer,std::string line
 	std::string operacion = lineaInputCliente.substr(0, lineaInputCliente.find(" "));
 	lineaInputCliente = lineaInputCliente.substr(lineaInputCliente.find(" ")+1);
 	std::string nombreCola = lineaInputCliente.substr(0, lineaInputCliente.find(" "));
-	lineaInputCliente = lineaInputCliente.substr(lineaInputCliente.find(" ")+1);
 	comunicacion.enviarSolicitudClienteAlServidor(socketServer, operacion);
 	comunicacion.enviarMensaje(socketServer, nombreCola);
 }
