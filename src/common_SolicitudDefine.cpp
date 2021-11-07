@@ -29,7 +29,7 @@ void SolicitudDefine::enviarInfomacionCliente(Socket& socketServer,std::string l
 void SolicitudDefine::recibirInfomacionServidor(Socket& socketServer){}
 
 
-void SolicitudDefine::enviarInformacion(std::string response, Socket& socketCliente){}
+void SolicitudDefine::enviarInformacion(std::string& response, Socket& socketCliente){}
 
 
 SolicitudDefine::~SolicitudDefine() {

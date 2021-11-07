@@ -10,6 +10,7 @@
 #include "common_ColasProtegidas.h"
 #include "common_MonitorColas.h"
 #include "common_Socket.h"
+#include <string>
 #include "common_Solicitud.h"
 class SolicitudPop :public Solicitud{
 public:
@@ -21,7 +22,7 @@ public:
 
 	void recibirInfomacionServidor(Socket& socketServer)override;
 
-	void enviarInformacion(std::string response, Socket& socketCliente)override;
+	void enviarInformacion(std::string& response, Socket& socketCliente)override;
 
 	virtual ~SolicitudPop();
 };

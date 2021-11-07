@@ -37,22 +37,12 @@ bool ClienteEnCurso::clienteSigueEnCurso(){
 	return this->clienteIntercambiaDatos;
 }
 
-
-bool ClienteEnCurso::informacionInvalida(std::string buffer){
-	return false;
-}
-
 void ClienteEnCurso::ejecutarRequest(std::string buffer){
 	StrategySolicitud ejecutor;
 	ejecutor.StrategyCrearSolicitud(buffer);
 	std::string response = ejecutor.StrategyRealizarSolicitud(monitor, clienteSocket);
 	ejecutor.StrategyEnviarInformacionSolicitada(clienteSocket, response);
 }
-
-void ClienteEnCurso::enviarInformacionSolicitada(std::string response){
-
-}
-
 
 ClienteEnCurso::~ClienteEnCurso() {
 	this->clienteSocket.close();

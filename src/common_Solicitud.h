@@ -17,13 +17,13 @@ class Solicitud {
 public:
 	virtual std::string resolverSolicitud(MonitorColas& queue, Socket& socketCliente) = 0;
 
-	virtual void enviarInformacion(std::string response, Socket& socketCliente) = 0;
+	virtual void enviarInformacion(std::string& response, Socket& socketCliente) = 0;
 
 	virtual void enviarInfomacionCliente(Socket& socketServer,std::string lineaInputCliente) = 0;
 
 	virtual void recibirInfomacionServidor(Socket& socketServer) = 0;
 
-	virtual ~Solicitud(){};
+	virtual ~Solicitud(){}
 };
 
 #endif /* SERVER_SERVER_SOLICITUD_H_ */

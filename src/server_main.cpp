@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
 	}catch(std::invalid_argument &e){
 		return 1;
 	}
+	return 0;
 }
 
 

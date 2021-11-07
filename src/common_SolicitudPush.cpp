@@ -7,10 +7,7 @@
 
 #include "common_SolicitudPush.h"
 
-SolicitudPush::SolicitudPush() {
-
-
-}
+SolicitudPush::SolicitudPush() {}
 
 std::string SolicitudPush::resolverSolicitud(MonitorColas& queue, Socket& socketCliente){
 	Protocolo comunicacion;
@@ -35,7 +32,7 @@ void SolicitudPush::enviarInfomacionCliente(Socket& socketServer,std::string lin
 void SolicitudPush::recibirInfomacionServidor(Socket& socketServer){}
 
 
-void SolicitudPush::enviarInformacion(std::string response, Socket& socketCliente){}
+void SolicitudPush::enviarInformacion(std::string& response, Socket& socketCliente){}
 
 SolicitudPush::~SolicitudPush() {
 	// TODO Auto-generated destructor stub

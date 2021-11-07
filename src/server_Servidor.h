@@ -10,6 +10,8 @@
 #include "common_ColasProtegidas.h"
 #include "common_Protocolo.h"
 #include "server_EscucharClientes.h"
+#include <string>
+#include <utility>
 
 class Servidor {
 

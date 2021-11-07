@@ -11,7 +11,7 @@
 #include <sys/types.h>
 #include <netdb.h>
 #include <sys/socket.h>
-
+#include <utility>
 #define FLAG_CLIENTE 0
 #define FLAG_SERVIDOR AI_PASSIVE
 
@@ -19,6 +19,9 @@
 #define SOCKET_H_
 
 class Socket {
+
+private:
+	int fd;
 
 public:
 	Socket() = default;
@@ -29,7 +32,7 @@ public:
 
 	Socket &operator=(Socket &&other);
 
-	void bind_and_listen( const char *host, const char *service);
+	void bind_and_listen(const char *host, const char *service);
 
 	Socket accept();
 
@@ -42,12 +45,6 @@ public:
 	void close();
 
 	virtual ~Socket();
-private:
-	int fd;
-
-
-
-
 };
 
 #endif /* SOCKET_H_ */

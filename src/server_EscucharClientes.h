@@ -25,7 +25,7 @@ private:
 	void esperarQueFinaliceComunicacionConClientesActuales();
 
 public:
-	EscucharClientes(Socket& servidor);
+	explicit EscucharClientes(Socket& servidor);
 
 	void run() override;
 

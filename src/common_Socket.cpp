@@ -34,11 +34,11 @@ Socket::Socket(Socket&& other){
 
 void Socket::bind_and_listen(const char *host,const char *service) {
 	int conectado = 0;
-	int conexion_exitosa = -1;
 	struct addrinfo *addr_result, *i;
 	addr_result = addrinfo_server_o_cliente(NULL, service, FLAG_SERVIDOR);
 	int fd_obtenido = -1;
 	for (i = addr_result; i != NULL && conectado == 0; i = i->ai_next) {
+		int conexion_exitosa = -1;
 		fd_obtenido = socket(i->ai_family, i->ai_socktype, i->ai_protocol);
 		conexion_exitosa = bind(fd_obtenido, i->ai_addr, i->ai_addrlen);
 		if (conexion_exitosa == 0) {
@@ -51,8 +51,7 @@ void Socket::bind_and_listen(const char *host,const char *service) {
 	if(fd_obtenido == -1)
 		throw std::invalid_argument("no se pudo bindear Server");
 	if (conectado) {
-		int listening = 0;
-		listening = listen(this->fd, 10);
+		listen(this->fd, 10);
 	}
 }
 
@@ -64,12 +63,12 @@ Socket Socket::accept() {
 
 void Socket::connect(const char *host, const char *service) {
 	bool conectado = false;
-	int conexion_exitosa = -1;
 	struct addrinfo *addr_obtenido, *i;
 	addr_obtenido = addrinfo_server_o_cliente(host, service,
 			FLAG_CLIENTE);
 	int fd = -1;
 	for (i = addr_obtenido; i != NULL && !conectado; i = i->ai_next) {
+		int conexion_exitosa = -1;
 		fd = socket(i->ai_family, i->ai_socktype, i->ai_protocol);
 		conexion_exitosa = ::connect(fd, i->ai_addr, i->ai_addrlen);
 		if (conexion_exitosa == 0) {
@@ -111,12 +110,12 @@ bool Socket::receive(char *buffer, size_t length) {
 				length - bytes_recibidos, 0);
 		if ((bytes == -1)){
 			socket_conectado = -1;
-			bool recvCorrecto = false;
+			recvCorrecto = false;
 			return recvCorrecto;
 		}
 		if((bytes == 0)){
 			socket_conectado = 0;
-			bool recvCorrecto = false;
+			recvCorrecto = false;
 			return recvCorrecto;
 		}
 		bytes_recibidos += bytes;

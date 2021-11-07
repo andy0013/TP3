@@ -11,6 +11,8 @@
 #include "common_MonitorColas.h"
 #include "common_Socket.h"
 #include "server_Thread.h"
+#include <string>
+#include <utility>
 #include "common_Protocolo.h"
 #include "common_StrategySolicitud.h"
 class ClienteEnCurso : public Thread{
@@ -29,13 +31,7 @@ public:
 
 	virtual ~ClienteEnCurso();
 protected:
-
-	void ejecutarRequest(std::string);
-
-	bool informacionInvalida(std::string);
-
-	void enviarInformacionSolicitada(std::string response);
-
+	void ejecutarRequest(std::string request);
 };
 
 #endif /* SRC_SERVER_CLIENTEENCURSO_H_ */

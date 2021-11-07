@@ -14,7 +14,7 @@
 class Cliente {
 	Socket sktCliente;
 public:
-	Cliente(char *argv[]);
+	explicit Cliente(char *argv[]);
 	void comunicacion();
 	virtual ~Cliente();
 };

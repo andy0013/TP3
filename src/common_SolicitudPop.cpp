@@ -9,7 +9,6 @@
 
 SolicitudPop::SolicitudPop() {
 	// TODO Auto-generated constructor stub
-
 }
 
 std::string SolicitudPop::resolverSolicitud(MonitorColas& queue, Socket& socketCliente){
@@ -18,7 +17,7 @@ std::string SolicitudPop::resolverSolicitud(MonitorColas& queue, Socket& socketC
 	return queue.popColaSiExiste(nombreCola);
 }
 
-void SolicitudPop::enviarInformacion(std::string response, Socket& socketCliente){
+void SolicitudPop::enviarInformacion(std::string& response, Socket& socketCliente){
 	Protocolo comunicacion;
 	comunicacion.enviarMensaje(socketCliente, response);
 }
@@ -29,7 +28,6 @@ void SolicitudPop::enviarInfomacionCliente(Socket& socketServer,std::string line
 	lineaInputCliente = lineaInputCliente.substr(lineaInputCliente.find(" ")+1);
 	std::string nombreCola = lineaInputCliente.substr(0, lineaInputCliente.find(" "));
 	lineaInputCliente = lineaInputCliente.substr(lineaInputCliente.find(" ")+1);
-	std::string mensajePorPushear = lineaInputCliente.substr(0, lineaInputCliente.find("\n"));
 	comunicacion.enviarSolicitudClienteAlServidor(socketServer, operacion);
 	comunicacion.enviarMensaje(socketServer, nombreCola);
 }

@@ -9,6 +9,7 @@
 #define SERVER_SERVER_SOLICITUDPUSH_H_
 
 #define VACIO ""
+#include <string>
 #include "common_ColasProtegidas.h"
 #include "common_MonitorColas.h"
 #include "common_Socket.h"
@@ -23,7 +24,7 @@ public:
 
 	void recibirInfomacionServidor(Socket& socketServer)override;
 
-	void enviarInformacion(std::string response, Socket& socketCliente)override;
+	void enviarInformacion(std::string& response, Socket& socketCliente)override;
 
 	virtual ~SolicitudPush();
 };
