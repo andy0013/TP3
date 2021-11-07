@@ -13,22 +13,21 @@
 #include "common_ColasProtegidas.h"
 #include "common_MonitorColas.h"
 #include "common_Socket.h"
+#include "server_Thread.h"
 #include "server_ClienteEnCurso.h"
 
-class EscucharClientes {
-	Socket servidor;
+class EscucharClientes : public Thread{
+private:
+	std::list<ClienteEnCurso*> clientesEnCurso;
+	Socket& servidor;
 
-	std::list<std::thread*> clientesEnCurso;
+	void eliminarThreadQueFinalizoComunicacion();
+	void esperarQueFinaliceComunicacionConClientesActuales();
+
 public:
-	EscucharClientes() = default;
+	EscucharClientes(Socket& servidor);
 
-	EscucharClientes(Socket servidor);
-
-	EscucharClientes(EscucharClientes &&other);
-
-	EscucharClientes &operator=(EscucharClientes &&other);
-
-	void operator()();
+	void run() override;
 
 	virtual ~EscucharClientes();
 };

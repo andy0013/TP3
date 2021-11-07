@@ -20,18 +20,23 @@ ClienteEnCurso::ClienteEnCurso(ClienteEnCurso&& other):
 }
 
 
-void ClienteEnCurso::operator()(){
+void ClienteEnCurso::run(){
 	Protocolo comunicacion;
     while (this->clienteIntercambiaDatos) {
     	std::string buffer;
     	try{
     		buffer = comunicacion.recibirSolicitudCliente(clienteSocket);
-    	}catch (std::invalid_argument& e){
+    		ejecutarRequest(buffer);
+    	} catch(std::invalid_argument& e){
     		this->clienteIntercambiaDatos = false;
     	}
-    	ejecutarRequest(buffer);
     }
 }
+
+bool ClienteEnCurso::clienteSigueEnCurso(){
+	return this->clienteIntercambiaDatos;
+}
+
 
 bool ClienteEnCurso::informacionInvalida(std::string buffer){
 	return false;
@@ -51,5 +56,6 @@ void ClienteEnCurso::enviarInformacionSolicitada(std::string response){
 
 ClienteEnCurso::~ClienteEnCurso() {
 	this->clienteSocket.close();
+    this->join();
 }
 

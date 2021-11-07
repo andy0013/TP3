@@ -11,9 +11,12 @@
 
 
 int main(int argc, char *argv[]) {
-	Servidor servidor(argv[1]);
-	servidor.comunicacion();
-	return 0;
+	try{
+		Servidor servidor(argv[1]);
+		servidor.comunicacion();
+	}catch(std::invalid_argument &e){
+		return 1;
+	}
 }
 
 

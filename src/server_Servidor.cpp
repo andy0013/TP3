@@ -8,21 +8,23 @@
 #include "server_Servidor.h"
 
 Servidor::Servidor(char *port) {
-	Socket servidor;
 	servidor.bind_and_listen(NULL, port);
-	this->escuchar = std::move(EscucharClientes(std::move(servidor)));
 }
+
 
 void Servidor::comunicacion(){
 	std::string line;
-	std::thread t1(std::ref(this->escuchar));
+	EscucharClientes hiloEscuchaClientes(this->servidor);
+	hiloEscuchaClientes.start();
 	while(std::getline(std::cin,line)){
-		if(line == "q")
-			break;
+		if(line == "q"){
+			this->servidor.close();
+		}
 	}
-
-
+	hiloEscuchaClientes.join();
 }
+
+
 
 
 Servidor::~Servidor() {}

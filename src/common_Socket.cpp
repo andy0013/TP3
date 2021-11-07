@@ -45,35 +45,40 @@ void Socket::bind_and_listen(const char *host,const char *service) {
 			conectado = 1;
 		}
 	}
+
 	this->fd = fd_obtenido;
 	freeaddrinfo(addr_result);
+	if(fd_obtenido == -1)
+		throw std::invalid_argument("no se pudo bindear Server");
 	if (conectado) {
 		int listening = 0;
 		listening = listen(this->fd, 10);
-		if (listening == -1) {
-//			throw?
-		}
 	}
 }
 
 Socket Socket::accept() {
 	int fd_client = ::accept(this->fd, NULL, NULL);
+	if(fd_client == -1) throw std::invalid_argument("Socket servidor shutdown");
 	return std::move(Socket(fd_client));
 }
 
 void Socket::connect(const char *host, const char *service) {
-	int conectado = 0;
+	bool conectado = false;
 	int conexion_exitosa = -1;
 	struct addrinfo *addr_obtenido, *i;
 	addr_obtenido = addrinfo_server_o_cliente(host, service,
 			FLAG_CLIENTE);
 	int fd = -1;
-	for (i = addr_obtenido; i != NULL && conectado == 0; i = i->ai_next) {
+	for (i = addr_obtenido; i != NULL && !conectado; i = i->ai_next) {
 		fd = socket(i->ai_family, i->ai_socktype, i->ai_protocol);
 		conexion_exitosa = ::connect(fd, i->ai_addr, i->ai_addrlen);
 		if (conexion_exitosa == 0) {
-			conectado = 1;
+			conectado = true;
 		}
+	}
+	if(!conectado){
+		freeaddrinfo(addr_obtenido);
+		throw std::invalid_argument("No se pudo establecer conexion");
 	}
 	this->fd = fd;
 	freeaddrinfo(addr_obtenido);
@@ -121,7 +126,7 @@ bool Socket::receive(char *buffer, size_t length) {
 
 void Socket::close() {
 	::shutdown(this->fd, SHUT_RDWR);
-	::close(this->fd);
+//	::close(this->fd);
 }
 
 Socket &Socket::operator=(Socket &&other) {

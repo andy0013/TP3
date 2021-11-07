@@ -13,7 +13,7 @@
 
 class Servidor {
 
-	EscucharClientes escuchar;
+	Socket servidor;
 
 public:
 	Servidor(char *port);

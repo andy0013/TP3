@@ -7,37 +7,45 @@
 
 #include "server_EscucharClientes.h"
 
-EscucharClientes::EscucharClientes(Socket servidor) {
-	this->servidor = std::move(servidor);
+EscucharClientes::EscucharClientes(Socket& servidor):
+	servidor(servidor){
 }
 
-EscucharClientes::EscucharClientes(EscucharClientes &&other){
-	this->clientesEnCurso = std::move(other.clientesEnCurso);
-	this->servidor = std::move(other.servidor);
-
+void EscucharClientes::esperarQueFinaliceComunicacionConClientesActuales() {
+	while (!this->clientesEnCurso.empty()) {
+		eliminarThreadQueFinalizoComunicacion();
+	}
 }
 
-EscucharClientes &EscucharClientes::operator=(EscucharClientes &&other){
-    this->clientesEnCurso = std::move(other.clientesEnCurso);
-    this->servidor = std::move(other.servidor);
-    return *this;
-}
-
-void EscucharClientes::operator()(){
+void EscucharClientes::run(){
 	bool enCurso = true;
 	MonitorColas monitorColas;
 	while (enCurso) {
 		Socket cliente;
 		try {
-		cliente = this->servidor.accept();
+			cliente = this->servidor.accept();
+			ClienteEnCurso* clienteConectado = new ClienteEnCurso(std::move(cliente),monitorColas);
+			this->clientesEnCurso.push_back(clienteConectado);
+			clienteConectado->start();
+			eliminarThreadQueFinalizoComunicacion();
 		}
 		catch (std::invalid_argument &e) {
 			break;
 		}
-		ClienteEnCurso clienteConectado(std::move(cliente),monitorColas);
-		this->clientesEnCurso.push_back(new std::thread(std::move(clienteConectado)));
-
 	}
+	esperarQueFinaliceComunicacionConClientesActuales();
+}
+
+void EscucharClientes::eliminarThreadQueFinalizoComunicacion() {
+    std::list<ClienteEnCurso *>::iterator it = this->clientesEnCurso.begin();
+    while (it != this->clientesEnCurso.end()) {
+        if (!(*it)->clienteSigueEnCurso()) {
+            delete *it;
+            it = this->clientesEnCurso.erase(it);
+        } else {
+            it++;
+        }
+    }
 }
 
 EscucharClientes::~EscucharClientes() {

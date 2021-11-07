@@ -9,6 +9,8 @@
 #define CLIENT_CLIENT_CLIENTE_H_
 #include "common_StrategySolicitud.h"
 #include "common_Socket.h"
+#include <string>
+#include <cstring>
 class Cliente {
 	Socket sktCliente;
 public:

@@ -10,9 +10,10 @@
 #include "common_ColasProtegidas.h"
 #include "common_MonitorColas.h"
 #include "common_Socket.h"
+#include "server_Thread.h"
 #include "common_Protocolo.h"
 #include "common_StrategySolicitud.h"
-class ClienteEnCurso {
+class ClienteEnCurso : public Thread{
 private:
 	Socket clienteSocket;
 	bool clienteIntercambiaDatos;
@@ -20,7 +21,9 @@ private:
 public:
 	ClienteEnCurso(Socket cliente,MonitorColas& monitor);
 
-	void operator()();
+	void run() override;
+
+	bool clienteSigueEnCurso();
 
 	ClienteEnCurso(ClienteEnCurso&& other);
 

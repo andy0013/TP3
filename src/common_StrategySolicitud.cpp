@@ -15,11 +15,13 @@ void StrategySolicitud::StrategyCrearSolicitud(std::string operacion){
 	if (!strcmp("define", operacion.c_str())) {
 		this->solicitud = new SolicitudDefine();
 	}
-	if (!strcmp("pop", operacion.c_str())) {
+	else if (!strcmp("pop", operacion.c_str())) {
 		this->solicitud = new SolicitudPop();
 	}
-	if (!strcmp("push", operacion.c_str())) {
+	else if (!strcmp("push", operacion.c_str())) {
 		this->solicitud = new SolicitudPush();
+	}else {
+		throw std::invalid_argument("Solicitud del cliente no existe.");
 	}
 }
 

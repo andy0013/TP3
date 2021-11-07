@@ -17,15 +17,20 @@ Cliente::Cliente(char *argv[]) {
 void Cliente::comunicacion(){
 	std::string line;
 	while (std::getline(std::cin, line)) {
+		if (!strcmp("exit", line.c_str())) break;
 		StrategySolicitud solicitudCliente;
 		std::string operacion = line.substr(0, line.find(" "));
-		solicitudCliente.StrategyCrearSolicitud(operacion);
-		solicitudCliente.StrategyEnviarInformacionSolicitadaPorCliente(sktCliente, line);
-		solicitudCliente.StrategyRecibirInformacionDelServidor(sktCliente);
+		try{
+			solicitudCliente.StrategyCrearSolicitud(operacion);
+			solicitudCliente.StrategyEnviarInformacionSolicitadaPorCliente(sktCliente, line);
+			solicitudCliente.StrategyRecibirInformacionDelServidor(sktCliente);
+		}catch(std::invalid_argument& e){
+			break;
+		}
 	}
 }
 
 Cliente::~Cliente() {
-	// TODO Auto-generated destructor stub
+	this->sktCliente.close();
 }
 
