@@ -38,11 +38,6 @@ bool ClienteEnCurso::clienteSigueEnCurso(){
 	return this->clienteIntercambiaDatos;
 }
 
-void ClienteEnCurso::clienteYaSigueEnCurso(){
-	this->clienteSocket.close();
-	this->clienteIntercambiaDatos = false;
-}
-
 
 void ClienteEnCurso::ejecutarRequest(std::string buffer){
 	StrategySolicitud ejecutor;
