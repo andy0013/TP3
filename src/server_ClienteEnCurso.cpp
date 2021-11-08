@@ -13,6 +13,7 @@ ClienteEnCurso::ClienteEnCurso(Socket cliente,MonitorColas& monitor):
 	this->clienteIntercambiaDatos = true;
 }
 
+
 ClienteEnCurso::ClienteEnCurso(ClienteEnCurso&& other):
 	monitor((other.monitor)){
 	this->clienteSocket = std::move(other.clienteSocket);
@@ -36,6 +37,12 @@ void ClienteEnCurso::run(){
 bool ClienteEnCurso::clienteSigueEnCurso(){
 	return this->clienteIntercambiaDatos;
 }
+
+void ClienteEnCurso::clienteYaSigueEnCurso(){
+	this->clienteSocket.close();
+	this->clienteIntercambiaDatos = false;
+}
+
 
 void ClienteEnCurso::ejecutarRequest(std::string buffer){
 	StrategySolicitud ejecutor;

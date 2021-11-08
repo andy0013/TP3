@@ -19,9 +19,9 @@ void Servidor::comunicacion(){
 	while(std::getline(std::cin,line)){
 		if(line == "q"){
 			this->servidor.close();
+			break;
 		}
 	}
-	hiloEscuchaClientes.join();
 }
 
 

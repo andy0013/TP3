@@ -122,7 +122,7 @@ bool Socket::receive(char *buffer, size_t length) {
 
 void Socket::close() {
 	::shutdown(this->fd, SHUT_RDWR);
-//	::close(this->fd);
+	::close(this->fd);
 }
 
 Socket &Socket::operator=(Socket &&other) {

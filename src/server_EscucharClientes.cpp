@@ -8,8 +8,7 @@
 #include "server_EscucharClientes.h"
 
 EscucharClientes::EscucharClientes(Socket& servidor):
-	servidor(servidor){
-}
+	servidor(servidor){}
 
 void EscucharClientes::esperarQueFinaliceComunicacionConClientesActuales() {
 	while (!this->clientesEnCurso.empty()) {
@@ -31,7 +30,6 @@ void EscucharClientes::run(){
 		}
 		catch (std::invalid_argument &e) {
 			enCurso = false;
-			break;
 		}
 	}
 	esperarQueFinaliceComunicacionConClientesActuales();
@@ -50,6 +48,6 @@ void EscucharClientes::eliminarThreadQueFinalizoComunicacion() {
 }
 
 EscucharClientes::~EscucharClientes() {
-	// TODO Auto-generated destructor stub
+	this->join();
 }
 

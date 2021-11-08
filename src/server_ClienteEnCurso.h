@@ -27,6 +27,8 @@ public:
 
 	bool clienteSigueEnCurso();
 
+	void clienteYaSigueEnCurso();
+
 	ClienteEnCurso(ClienteEnCurso&& other);
 
 	virtual ~ClienteEnCurso();

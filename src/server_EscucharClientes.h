@@ -22,6 +22,7 @@ private:
 	Socket& servidor;
 
 	void eliminarThreadQueFinalizoComunicacion();
+
 	void esperarQueFinaliceComunicacionConClientesActuales();
 
 public:
