@@ -9,6 +9,7 @@
 #define SRC_SERVER_ESCUCHARCLIENTES_H_
 #include <list>
 #include <thread>
+//#include <invoke.h>
 #include <utility>
 #include "common_ColasProtegidas.h"
 #include "common_MonitorColas.h"
@@ -20,6 +21,7 @@ class EscucharClientes : public Thread{
 private:
 	std::list<ClienteEnCurso*> clientesEnCurso;
 	Socket& servidor;
+	MonitorColas monitorColas;
 
 	void eliminarThreadQueFinalizoComunicacion();
 
@@ -28,7 +30,8 @@ public:
 
 	void run() override;
 
-	virtual ~EscucharClientes();
+	~EscucharClientes() override;
+	void finalizarHilosClientes();
 };
 
 #endif /* SRC_SERVER_ESCUCHARCLIENTES_H_ */

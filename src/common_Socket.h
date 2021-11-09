@@ -39,7 +39,7 @@ public:
 
 	bool send(const char *buffer, size_t length);
 
-	bool receive(char *buffer, size_t length);
+	bool receive(char* buffer, size_t length);
 
 	void close();
 

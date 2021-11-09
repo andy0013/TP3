@@ -15,7 +15,7 @@
 
 class Servidor {
 	Socket servidor;
-
+	EscucharClientes escucharClientes;
 public:
 	explicit Servidor(char *port);
 

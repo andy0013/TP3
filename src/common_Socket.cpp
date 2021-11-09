@@ -100,7 +100,7 @@ bool Socket::send(const char *buffer, size_t bytes_a_enviar) {
 	return envioCorrecto;
 }
 
-bool Socket::receive(char *buffer, size_t length) {
+bool Socket::receive(char* buffer, size_t length) {
 	size_t bytes_recibidos = 0;
 	bool recvCorrecto = true;
 	while ((bytes_recibidos < length)) {

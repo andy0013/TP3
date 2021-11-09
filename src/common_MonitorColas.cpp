@@ -43,7 +43,8 @@ void MonitorColas::pushColaSiExiste(std::string nombreCola,std::string mensaje){
 MonitorColas::~MonitorColas() {
 	std::map<std::string, ColasProtegidas*>:: iterator it = this->mapConColasProtegidas.begin();
 	while (it != this->mapConColasProtegidas.end()) {
-		delete (it)->second;
+		delete it->second;
+		it.operator ++();
 	}
 }
 

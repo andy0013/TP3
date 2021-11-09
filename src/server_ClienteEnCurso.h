@@ -30,7 +30,7 @@ public:
 
 	void parar();
 
-	virtual ~ClienteEnCurso();
+	~ClienteEnCurso() override;
 protected:
 	void ejecutarRequest(std::string request);
 };
