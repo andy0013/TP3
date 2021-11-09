@@ -42,3 +42,12 @@ En este caso mostramos el flujo de finalizar de los clientes. Podemos ver que cu
 
 
 # PROBLEMAS EN DESARROLLO - SITUACIONES PARTICULARES
+
+Si bien, con las explicaciones de clase fue mucho mas sencillo encarar el TP, tuve que realizar un cambio importante al momento de encarar este mismo, ya que, mi forma de trabajar previa con los Thread era a traves de lanzar los hilos con std::thread(clase que tenga metodo Operator()()). Sin embargo, en este caso me era mas sencillo que mis clases implementen la clase Thread, con el metodo run(). Porque?.
+De esta forma podria seguir mas claro el ejemplo que vimos en clase para iterar la lista a traves de un metodo booleano al cual puedo acceder y decidir si eliminar el Thread o no. 
+
+De mi forma inicial, tan solo podria acceder a los metodos de la clase Thread - Joinable() - Join() .... Por lo que hacer ese cambio me ayudo bastante, aunque fue algo distinto en un principio.
+
+Por otro lado, el uso de Iterator para moverme en la std::list hizo que me lleve horas de trabajo al no hacer un it.operator++ en un destructor, debido a que era un destructor me fue mas dificil hayar la fuente, asi que me llevo esa leccion al usar esta nueva forma de recorrer una lista sin usar el .size().
+
+Sin embargo, si tuviera que decidir cual fue el area que mas me dio dificultar seria en el entendimiento de en que scope se encuentra la informacion, cuando se destruye, donde se llamaria al destructor. Ya que con el error previamente mencionado : no se hizo it.operator++, me sucedia que el codigo se quedaba destruyendo un objeto eternamente, pero otro hilo estaba intentando joinear, lo que lo hacia mucho mas confuso, y me obligo a entender cuando y donde se hace el destroy de cada clase, para ver en que momento intentaba destruir que, y seguir el flujo.
