@@ -13,6 +13,9 @@ El trabajo practico consiste en la creacion de un servidor, desde el cual sea po
 
 # MODELO
 
+ 
+ ![model](imagenes/primer-modelo.png)
+
 
  Para el modelo del servidor nos basamos en el modelo cliente-servidor presentado en la clase, es decir, tenemos un hilo main el cual espera el input corroborando que el ingreso sea q - en ese caso, se cerrara el socketAceptador. 
  Tambien, dentro del servidor, se lanzara un hilo el cual escucha clientes, representado el en Diagrama mostrado previamente, este hilo acepta clientes, y los lanza a correr, estos hilos son la clase ClientesEnUso, estos mismos intercambian informacion con el cliente. 
