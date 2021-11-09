@@ -9,4 +9,11 @@ Link : https://github.com/andy0013/TP3
 
 # Introducción
 
-Ciertamente en este TP no llegue siquiera a avanzar mas que un init, aun realmente no puedo siquiera plantear preguntas de modelo ya que no lo inicie, por razones personales y laborales se me complico dedicarle el tiempo suficiente a este TP ya que estuve atrasado y recien el fin de semana logre finalizar la reentrega del TP2. Me quedaron 2 dias para comenzar con este TP y tuve complicaciones para dedicar tiempo. Igualmente mi idea es finalizarlo para la reentrega.
+El trabajo practico consiste en la creacion de un servidor, desde el cual sea posible aceptar varios clientes en paralelo, los cuales podran enviar mensajes para realizar solicitudes respetando un protocolo de comunicacion, debe de haber un manejo correcto de errores, en aquellas situaciones donde por un mensaje mal enviado o la falla de distintas conexiones no se detenga la ejecucion del programa, sino que sepa como manejarlo.
+
+# MODELO
+
+
+ Para el modelo del servidor nos basamos en el modelo cliente-servidor presentado en la clase, es decir, tenemos un hilo main el cual espera el input corroborando que el ingreso sea q - en ese caso, se cerrara el socketAceptador. 
+ Tambien, dentro del servidor, se lanzara un hilo el cual escucha clientes, representado el en Diagrama mostrado previamente, este hilo acepta clientes, y los lanza a correr, estos hilos son la clase ClientesEnUso, estos mismos intercambian informacion con el cliente. 
+ Los mismos utilizan una interfaz **Solicitud** para definir que comportamiento utilizaran, para esto hace uso de la clase **StrategySolicitud** y de la clase **Protocolo** en caso de necesitar recibir informacion del cliente, y de tener que enviar informacion al mismo. 
