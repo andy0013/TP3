@@ -39,3 +39,6 @@ En el primer caso, vemos cuando inicia el ./server. En esta situacion se inicia 
  ![model](imagenes/secuencia.png)
 
 En este caso mostramos el flujo de finalizar de los clientes. Podemos ver que cuando se ingresa una "q", el hilo main que estaba esperando el input no realiza llamado a otra funcion mas que a cerrar el socket servidor, luego, continuando su flujo, ya que la misma se encuentra en el main - stack, va a finalizar, pero para esto, debe llamar al destructor de la clase *EscucharClientes*, y este mismo destructor se ocupa de finalizar hilos en curso - liberar memoria, y joinearse a si mismo, antes de destruirse. 
+
+
+# PROBLEMAS EN DESARROLLO - SITUACIONES PARTICULARES
