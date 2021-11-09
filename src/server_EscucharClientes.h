@@ -23,8 +23,6 @@ private:
 
 	void eliminarThreadQueFinalizoComunicacion();
 
-	void esperarQueFinaliceComunicacionConClientesActuales();
-
 public:
 	explicit EscucharClientes(Socket& servidor);
 

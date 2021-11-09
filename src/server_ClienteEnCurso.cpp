@@ -8,16 +8,8 @@
 #include "server_ClienteEnCurso.h"
 
 ClienteEnCurso::ClienteEnCurso(Socket cliente,MonitorColas& monitor):
-	monitor(monitor){
+	clienteIntercambiaDatos(true),monitor(monitor){
 	this->clienteSocket = std::move(cliente);
-	this->clienteIntercambiaDatos = true;
-}
-
-
-ClienteEnCurso::ClienteEnCurso(ClienteEnCurso&& other):
-	monitor((other.monitor)){
-	this->clienteSocket = std::move(other.clienteSocket);
-	this->clienteIntercambiaDatos = other.clienteIntercambiaDatos;
 }
 
 
@@ -36,6 +28,11 @@ void ClienteEnCurso::run(){
 
 bool ClienteEnCurso::clienteSigueEnCurso(){
 	return this->clienteIntercambiaDatos;
+}
+
+void ClienteEnCurso::parar(){
+	this->clienteIntercambiaDatos = false;
+	this->clienteSocket.close();
 }
 
 

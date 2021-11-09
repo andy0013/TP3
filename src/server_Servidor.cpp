@@ -17,11 +17,14 @@ void Servidor::comunicacion(){
 	EscucharClientes hiloEscuchaClientes(this->servidor);
 	hiloEscuchaClientes.start();
 	while(std::getline(std::cin,line)){
+		std::cout << line << std::endl;
 		if(line == "q"){
+			std::cout << "entro" << std::endl;
 			this->servidor.close();
 			break;
 		}
 	}
+	hiloEscuchaClientes.join();
 }
 
 

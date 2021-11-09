@@ -13,12 +13,13 @@
 #include "server_Thread.h"
 #include <string>
 #include <utility>
+#include <atomic>
 #include "common_Protocolo.h"
 #include "common_StrategySolicitud.h"
 class ClienteEnCurso : public Thread{
 private:
 	Socket clienteSocket;
-	bool clienteIntercambiaDatos;
+	std::atomic<bool> clienteIntercambiaDatos;
 	MonitorColas& monitor;
 public:
 	ClienteEnCurso(Socket cliente,MonitorColas& monitor);
@@ -27,7 +28,7 @@ public:
 
 	bool clienteSigueEnCurso();
 
-	ClienteEnCurso(ClienteEnCurso&& other);
+	void parar();
 
 	virtual ~ClienteEnCurso();
 protected:

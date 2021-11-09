@@ -10,12 +10,6 @@
 EscucharClientes::EscucharClientes(Socket& servidor):
 	servidor(servidor){}
 
-void EscucharClientes::esperarQueFinaliceComunicacionConClientesActuales() {
-	while (!this->clientesEnCurso.empty()) {
-		eliminarThreadQueFinalizoComunicacion();
-	}
-}
-
 void EscucharClientes::run(){
 	bool enCurso = true;
 	MonitorColas monitorColas;
@@ -32,7 +26,6 @@ void EscucharClientes::run(){
 			enCurso = false;
 		}
 	}
-	esperarQueFinaliceComunicacionConClientesActuales();
 }
 
 void EscucharClientes::eliminarThreadQueFinalizoComunicacion() {
@@ -48,6 +41,11 @@ void EscucharClientes::eliminarThreadQueFinalizoComunicacion() {
 }
 
 EscucharClientes::~EscucharClientes() {
-	this->join();
+	std::list<ClienteEnCurso *>::iterator it = this->clientesEnCurso.begin();
+	while (it != this->clientesEnCurso.end()) {
+		(*it)->parar();
+	     it.operator ++();
+	}
+	eliminarThreadQueFinalizoComunicacion();
 }
 

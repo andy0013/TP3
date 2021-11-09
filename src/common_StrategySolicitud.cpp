@@ -44,6 +44,6 @@ void StrategySolicitud::StrategyRecibirInformacionDelServidor(
 }
 
 StrategySolicitud::~StrategySolicitud() {
-	// TODO Auto-generated destructor stub
+	delete this->solicitud;
 }
 

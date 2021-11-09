@@ -132,8 +132,9 @@ Socket &Socket::operator=(Socket &&other) {
 }
 
 Socket::~Socket() {
-	if (this->fd == -1)return;
-	::shutdown(this->fd, SHUT_RDWR);
-	::close(this->fd);
+	if (this->fd != -1){
+		::shutdown(this->fd, SHUT_RDWR);
+		::close(this->fd);
+	}
 }
 
