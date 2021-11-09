@@ -15,6 +15,7 @@ Cliente::Cliente(char *argv[]) {
 		sktCliente.connect(argv[1], argv[2]);
 	}catch(std::invalid_argument& e){
 		this->sktCliente.close();
+		//logger seria necesario.
 	}
 }
 

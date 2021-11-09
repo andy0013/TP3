@@ -11,7 +11,8 @@ Servidor::Servidor(char *port): escucharClientes(this->servidor) {
 	try{
 		servidor.bind_and_listen(NULL, port);
 	}catch(std::invalid_argument &e){
-		//logger
+		this->servidor.close();
+		//logger seria necesario.
 	}
 	this->escucharClientes.start();
 }
