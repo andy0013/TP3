@@ -50,6 +50,7 @@ std::string Protocolo::recibirMensaje(Socket& socketReceptor){
 	socketReceptor.receive((char*)&cantidadMensaje,sizeof(uint16_t));
 	int cantidadCaracteres = ntohs(cantidadMensaje);
 	char* mensajeRecibido = new char[cantidadCaracteres+1];
+	memset(mensajeRecibido,'\0',cantidadCaracteres+1);
 	socketReceptor.receive(mensajeRecibido,cantidadCaracteres);
 	std::string stringConValor(mensajeRecibido);
 	delete []mensajeRecibido;
