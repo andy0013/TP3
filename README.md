@@ -51,3 +51,10 @@ De mi forma inicial, tan solo podria acceder a los metodos de la clase Thread - 
 Por otro lado, el uso de Iterator para moverme en la std::list hizo que me lleve horas de trabajo al no hacer un it.operator++ en un destructor, debido a que era un destructor me fue mas dificil hayar la fuente, asi que me llevo esa leccion al usar esta nueva forma de recorrer una lista sin usar el .size().
 
 Sin embargo, si tuviera que decidir cual fue el area que mas me dio dificultar seria en el entendimiento de en que scope se encuentra la informacion, cuando se destruye, donde se llamaria al destructor. Ya que con el error previamente mencionado : no se hizo it.operator++, me sucedia que el codigo se quedaba destruyendo un objeto eternamente, pero otro hilo estaba intentando joinear, lo que lo hacia mucho mas confuso, y me obligo a entender cuando y donde se hace el destroy de cada clase, para ver en que momento intentaba destruir que, y seguir el flujo.
+
+## EXCEPCIONES 
+
+En el flujo de nuestro programa se lanzan varias excepciones, sin embargo, en los bloques importantes Cliente - Servidor solo hay 2 try-catch importantes, y los mismos se encuentran en el momento de enviar mensajes entre si, es decir, si falla la conexion, si no se puede bindear el server correctamente, lanza una excepcion que es catcheada - y se continua el flujo - lo ideal seria hacer en ese momento, utilizar un logger para que no se pierda la informacion del catch.
+
+Entonces, si hay un problema al hacer _bind_ del servidor o al hacer _connect_ de parte del cliente, se catchea el Throw que lanza el Socket, y el flujo continua, en caso del cliente, finaliza. Luego, en el flujo de los mismos habra un try-catch el cual determina el fin de ejecucion ya que son resultado de: por ejemplo, cierre del socket servidor por ingreso de una "q" entonces el accept lanzara excepcion de que finalizo el servidor - y se continuara con el flujo de cierre de servidor. Este flujo esta detallado en 
+**SECUENCIA SERVIDOR FIN**.
