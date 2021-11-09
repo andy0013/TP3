@@ -9,7 +9,6 @@
 #define SRC_SERVER_ESCUCHARCLIENTES_H_
 #include <list>
 #include <thread>
-//#include <invoke.h>
 #include <utility>
 #include "common_ColasProtegidas.h"
 #include "common_MonitorColas.h"
@@ -24,6 +23,10 @@ private:
 	MonitorColas monitorColas;
 
 	void eliminarThreadQueFinalizoComunicacion();
+
+	EscucharClientes(const EscucharClientes &other) = delete;
+
+	EscucharClientes& operator=(const EscucharClientes &other) = delete;
 
 public:
 	explicit EscucharClientes(Socket& servidor);

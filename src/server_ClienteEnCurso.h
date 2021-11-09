@@ -21,6 +21,12 @@ private:
 	Socket clienteSocket;
 	std::atomic<bool> clienteIntercambiaDatos;
 	MonitorColas& monitor;
+
+	ClienteEnCurso(const ClienteEnCurso &other) = delete;
+
+	ClienteEnCurso& operator=(const ClienteEnCurso &other) = delete;
+
+
 public:
 	ClienteEnCurso(Socket cliente,MonitorColas& monitor);
 

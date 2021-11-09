@@ -19,6 +19,10 @@ class Protocolo {
 	void obtenerCharParServidor(const std::string &operacion,
 			char& claveParaServidor);
 
+	Protocolo(const Protocolo &other) = delete;
+
+	Protocolo& operator=(const Protocolo &other) = delete;
+
 public:
 	Protocolo();
 

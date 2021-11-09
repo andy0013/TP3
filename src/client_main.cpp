@@ -12,12 +12,8 @@
 
 
 int main(int argc, char *argv[]) {
-	try{
-		Cliente cliente(argv);
-		cliente.comunicacion();
-	}catch(std::invalid_argument& e){
-		return 1;
-	}
+	Cliente cliente(argv);
+	cliente.comunicacion();
 	return 0;
 }
 

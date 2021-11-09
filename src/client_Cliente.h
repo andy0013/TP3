@@ -13,6 +13,11 @@
 #include <cstring>
 class Cliente {
 	Socket sktCliente;
+
+	Cliente(const Cliente &other) = delete;
+
+	Cliente& operator=(const Cliente &other) = delete;
+
 public:
 	explicit Cliente(char *argv[]);
 	void comunicacion();

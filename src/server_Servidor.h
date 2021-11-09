@@ -16,6 +16,11 @@
 class Servidor {
 	Socket servidor;
 	EscucharClientes escucharClientes;
+
+	Servidor(const Servidor &other) = delete;
+
+	Servidor& operator=(const Servidor &other) = delete;
+
 public:
 	explicit Servidor(char *port);
 

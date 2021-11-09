@@ -22,6 +22,10 @@ class Socket {
 private:
 	int fd;
 
+	Socket(const Socket &other) = delete;
+
+	Socket& operator=(const Socket &other) = delete;
+
 public:
 	Socket() = default;
 

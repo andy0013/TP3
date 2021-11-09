@@ -8,7 +8,11 @@
 #include "server_Servidor.h"
 
 Servidor::Servidor(char *port): escucharClientes(this->servidor) {
-	servidor.bind_and_listen(NULL, port);
+	try{
+		servidor.bind_and_listen(NULL, port);
+	}catch(std::invalid_argument &e){
+		//logger
+	}
 	this->escucharClientes.start();
 }
 
@@ -22,8 +26,6 @@ void Servidor::comunicacion(){
 		}
 	}
 }
-
-
 
 
 Servidor::~Servidor() {}
